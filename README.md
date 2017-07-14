@@ -10,7 +10,7 @@ How to Use
     <li><strong>Construct a Geocoder with your google api_key</strong>
         <br/>
         <code>
-            new Geocoder( "your_api_key" );
+            $geocoder = new Geocoder( "your_api_key" );
         </code>
     </li>
     <li><strong>Run a search or get the first match</strong>
