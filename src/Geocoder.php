@@ -18,11 +18,11 @@ class Geocoder
      * @return ResultAdapter[]
      */
     function search( $address ){
-        $k = $this->api_key;
-        $a = urlencode($address);
-        $query = self::API_ENDPOINT."?address=$a&key=$k";
-        $json = file_get_contents( $query );
-        $googleData = json_decode( $json, true );
+        $required = [
+            'address' => strval($address),
+            'key' => $this->api_key
+        ];
+        $googleData = self::getGoogleData($required);
 
         $results = [];
         foreach ( $googleData['results'] as $result ){
@@ -37,6 +37,16 @@ class Geocoder
             return $results[0];
         }
         return false;
+    }
+
+    /**
+     * @param $queryArr array
+     * @return bool|array
+     */
+    private static function getGoogleData ( $queryArr ) {
+        $url = self::API_ENDPOINT . "?" . http_build_query($queryArr);
+        $json = file_get_contents($url);
+        return json_decode($json, true);
     }
 
     private $api_key;
