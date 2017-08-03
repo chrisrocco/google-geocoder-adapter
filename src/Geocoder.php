@@ -22,7 +22,11 @@ class Geocoder
             'address' => strval($address),
             'key' => $this->api_key
         ];
-        $googleData = self::getGoogleData($required);
+        try {
+            $googleData = self::getGoogleData($required);
+        } catch (\HttpException $e) {
+            return false;
+        }
 
         $results = [];
         foreach ( $googleData['results'] as $result ){
