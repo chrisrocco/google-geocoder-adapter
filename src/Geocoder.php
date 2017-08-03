@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: chris
- * Date: 6/1/2017
- * Time: 7:58 PM
- */
 
 namespace vector\Geocoder;
 
@@ -24,7 +18,7 @@ class Geocoder
         ];
         try {
             $googleData = self::getGoogleData($required);
-        } catch (\HttpException $e) {
+        } catch (\ErrorException $e) {
             return false;
         }
 
