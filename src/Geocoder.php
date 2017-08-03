@@ -19,7 +19,7 @@ class Geocoder
         try {
             $googleData = self::getGoogleData($required);
         } catch (\ErrorException $e) {
-            return false;
+            return [];
         }
 
         $results = [];
